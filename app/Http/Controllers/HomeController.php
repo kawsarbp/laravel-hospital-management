@@ -32,7 +32,6 @@ class HomeController extends Controller
             return redirect()->route('dashboard');
         }
         else{
-
             $doctors = Doctor::all();
             return view('user.dashboard',compact('doctors'));
         }

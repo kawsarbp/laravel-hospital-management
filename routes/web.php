@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/',[HomeController::class,'index']);
+/*user routes*/
+Route::post('/user/store',[AppointmentController::class,'store'])->name('appointment.store');
+
 Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified' ]) ->group(function () {
     /*rediect role route*/
     Route::get('/dashboard',[HomeController::class,'redirect'])->name('dashboard');
@@ -15,7 +18,5 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     Route::get('/doctor/create',[DoctorController::class,'create'])->name('create');
     Route::post('/doctor/create',[DoctorController::class,'store'])->name('store');
     Route::delete('/doctor/delete/{id}',[DoctorController::class,'destroy'])->name('destroy');
-
-
 
 });
