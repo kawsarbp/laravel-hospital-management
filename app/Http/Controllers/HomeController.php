@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    ## Redirect admin and user page ##
     public function redirect()
     {
         if (Auth::id()) {
@@ -19,6 +20,11 @@ class HomeController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+    ## show index view page frontend
+    public function index()
+    {
+        return view('user.dashboard');
     }
 
 }
