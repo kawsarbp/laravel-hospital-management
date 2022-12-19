@@ -13,7 +13,7 @@ function fnFormatDetails ( oTable, nTr )
 $(document).ready(function() {
 
     $('#dynamic-table').dataTable( {
-        "aaSorting": [[ 4, "desc" ]]
+        "": [[ 1, "desc" ]]
     } );
 
     /*
@@ -39,7 +39,7 @@ $(document).ready(function() {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] }
         ],
-        "aaSorting": [[1, 'asc']]
+        "": [[1, 'desc']]
     });
 
     /* Add event listener for opening and closing details
