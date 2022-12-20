@@ -7,7 +7,7 @@
         <div class="col-sm-12">
             <section class="card">
                 <header class="card-header">
-                    Dynamic Table
+                    Doctor Details
                     <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-times"></a>

@@ -88,6 +88,10 @@
                     @if(Route::has('login'))
                         @auth
 
+                            <li class="nav-item">
+                                <a class="nav-link" style="background: greenyellow;" href="{{ route('appointment.index') }}">My Appointment</a>
+                            </li>
+
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <div class="nav-item">

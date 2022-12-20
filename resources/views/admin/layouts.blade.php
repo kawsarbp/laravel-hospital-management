@@ -83,6 +83,12 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a class="{{ request()->routeIs('appointments.show') ?'active':'' }} " href="{{ route('appointments.show') }}">
+                        <i class="fa fa-mail-forward"></i>
+                        <span>Appointments</span>
+                    </a>
+                </li>
 
                 <li class="sub-menu">
                     <a href="javascript:;"  class="{{ request()->routeIs('index') ?'active':'' }} {{ request()->routeIs('create') ?'active':'' }}" >

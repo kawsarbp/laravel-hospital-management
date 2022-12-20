@@ -15,7 +15,19 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::id()){
+            if(Auth::user()->role == '0')
+            {
+            $user_id = Auth::user()->id;
+            $appoint = Appointment::where('user_id',$user_id)->get();
+            return view('user.appointment',compact('appoint'));
+
+            }
+            return  redirect()->back();
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -36,12 +48,11 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::id())
-        {
+        if (Auth::id()) {
             $id = Auth::user()->id;
         }
         Appointment::create([
-            'user_id' => $id = isset($id) ? $id:null,
+            'user_id' => $id = isset($id) ? $id : null,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -50,7 +61,7 @@ class AppointmentController extends Controller
             'message' => $request->message,
             'status' => 'In Progress',
         ]);
-        return redirect()->back()->with(['type'=>'success','message'=>'Appointment Register Success']);
+        return redirect()->back()->with(['type' => 'success', 'message' => 'Appointment Register Success']);
     }
 
     /**
@@ -59,9 +70,10 @@ class AppointmentController extends Controller
      * @param \App\Models\Appointment $appointment
      * @return \Illuminate\Http\Response
      */
-    public function show(Appointment $appointment)
+    public function show()
     {
-        //
+        $appointments = Appointment::all();
+        return view('admin.appointments',compact('appointments'));
     }
 
     /**
@@ -93,8 +105,27 @@ class AppointmentController extends Controller
      * @param \App\Models\Appointment $appointment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
+    public function destroy($id)
     {
-        //
+        $appointment = Appointment::find($id);
+        $appointment->delete();
+        return redirect()->back()->with(['message'=>'Appointment Cancel Success','type'=>'success']);
+    }
+
+    public function approved($id)
+    {
+        $approved = Appointment::find($id);
+
+        $approved->status = 'Approved';
+        $approved->save();
+        return redirect()->back()->with(['message'=>'Appointment Approved Success','type'=>'success']);
+    }
+    public function cancel($id)
+    {
+        $approved = Appointment::find($id);
+
+        $approved->status = 'Canceled';
+        $approved->save();
+        return redirect()->back()->with(['message'=>'Appointment Approved Success','type'=>'success']);
     }
 }
