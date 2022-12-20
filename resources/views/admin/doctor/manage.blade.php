@@ -42,7 +42,7 @@
                                         <img style="width: 100px;" src="/uploads/doctors/{{ $doctor->photo }}" alt="">
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-outline-info btn-sm">Edit</a>
+                                        <a href="{{ route('edit',$doctor->id) }}" class="btn btn-outline-info btn-sm">Edit</a>
                                         <form action="{{ route('destroy',$doctor->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

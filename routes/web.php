@@ -20,6 +20,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     Route::get('/doctor/create',[DoctorController::class,'create'])->name('create');
     Route::post('/doctor/create',[DoctorController::class,'store'])->name('store');
     Route::delete('/doctor/delete/{id}',[DoctorController::class,'destroy'])->name('destroy');
+    Route::get('/doctor/edit/{id}',[DoctorController::class,'edit'])->name('edit');
+    Route::post('/doctor/update/{id}',[DoctorController::class,'update'])->name('update');
     /*appointment*/
     Route::get('/user/apppointments',[AppointmentController::class,'show'])->name('appointments.show');
     Route::get('/apppointment/approved/{id}',[AppointmentController::class,'approved'])->name('appointment.approved');
