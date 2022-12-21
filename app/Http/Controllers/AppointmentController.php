@@ -138,7 +138,7 @@ class AppointmentController extends Controller
 
     public function email(Request $request ,$id)
     {
-        
+
         $email_find = Appointment::find($id);
         $email = $email_find->email;
         $data = [
