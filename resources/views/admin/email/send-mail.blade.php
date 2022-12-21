@@ -11,6 +11,7 @@
 
 <div style="width: 600px; margin: auto; background:#F6F6F6; border-radius: 10px; text-align:center; padding: 10px; margin-top: 50px;">
     <h2>{{ $greeting }}</h2>
+    <h4>Your Appointment is: {{ $status }}</h4>
     <p>{{ $text }}</p>
 </div>
 

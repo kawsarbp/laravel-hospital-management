@@ -141,10 +141,12 @@ class AppointmentController extends Controller
 
         $email_find = Appointment::find($id);
         $email = $email_find->email;
+        $status = $email_find->status;
         $data = [
             'greeting'=>$request->greeting,
             'subject'=>$request->subject,
             'text'=>$request->message,
+            'status'=> $status,
             'email'=>$email
         ];
 
