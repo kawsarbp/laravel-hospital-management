@@ -46,6 +46,7 @@
                                     <td>
                                         <a href="{{ route('appointment.approved',$appoint->id) }}" class="btn btn-outline-info btn-sm">Approve</a>
                                         <a href="{{ route('appointment.cancel',$appoint->id) }}" class="btn btn-outline-warning btn-sm">Canceled</a>
+                                        <a href="{{ route('emailView',$appoint->id) }}" class="btn btn-sm btn-outline-primary">Send Mail</a>
                                     </td>
                                 </tr>
                                 @endforeach

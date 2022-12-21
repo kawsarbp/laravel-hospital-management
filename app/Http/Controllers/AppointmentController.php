@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DetailsMail;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -111,7 +113,6 @@ class AppointmentController extends Controller
         $appointment->delete();
         return redirect()->back()->with(['message'=>'Appointment Cancel Success','type'=>'success']);
     }
-
     public function approved($id)
     {
         $approved = Appointment::find($id);
@@ -128,4 +129,32 @@ class AppointmentController extends Controller
         $approved->save();
         return redirect()->back()->with(['message'=>'Appointment Approved Success','type'=>'success']);
     }
+    /*email*/
+    public function emailView($id)
+    {
+        $email_id = Appointment::find($id);
+        return view('admin.email.email',compact('email_id'));
+    }
+
+    public function email(Request $request ,$id)
+    {
+        
+        $email_find = Appointment::find($id);
+        $email = $email_find->email;
+        $data = [
+            'greeting'=>$request->greeting,
+            'subject'=>$request->subject,
+            'text'=>$request->message,
+            'email'=>$email
+        ];
+
+        $user['to'] = $email;
+        $user['subject'] = $data['subject'];
+        Mail::send('admin.email.send-mail',$data,function ($messages) use ($user){
+            $messages->to($user['to']);
+            $messages->subject($user['subject']);
+        });
+        return redirect()->back()->with(['message'=>'Mail send success','type'=>'success']);
+    }
+
 }

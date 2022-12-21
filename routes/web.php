@@ -26,5 +26,9 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     Route::get('/user/apppointments',[AppointmentController::class,'show'])->name('appointments.show');
     Route::get('/apppointment/approved/{id}',[AppointmentController::class,'approved'])->name('appointment.approved');
     Route::get('/apppointment/cancel/{id}',[AppointmentController::class,'cancel'])->name('appointment.cancel');
+    /*send email*/
+    Route::get('/email-view/{id}',[AppointmentController::class,'emailView'])->name('emailView');
+    Route::post('/email-view/{id}',[AppointmentController::class,'email'])->name('email');
+
 
 });

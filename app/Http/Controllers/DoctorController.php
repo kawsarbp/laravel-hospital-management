@@ -104,7 +104,7 @@ class DoctorController extends Controller
 //            'photo' => 'required',
         ]);
 
-       
+
 
         $doctor = Doctor::find($id);
         $doctor->name = $request->name;
